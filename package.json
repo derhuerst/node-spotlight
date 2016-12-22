@@ -1,0 +1,21 @@
+{
+	"name":        "node-spotlight",
+	"description": "Search macOS using Spotlight.",
+	"version":     "0.1.0",
+	"main":        "index.js",
+	"files":       ["index.js"],
+	"keywords":    ["macos", "os x", "spotlight", "search", "mdfind"],
+	"author":      "Jannis R <mail@jannisr.de>",
+	"homepage":    "https://github.com/derhuerst/node-spotlight",
+	"repository":  "derhuerst/node-spotlight",
+	"bugs":        "https://github.com/derhuerst/node-spotlight/issues",
+	"license":     "ISC",
+	"engines":     {"node": ">=6"},
+	"devDependencies": {
+		"is-stream": "^1.1.0"
+	},
+	"scripts": {
+		"prepublish": "npm test",
+		"test": "node test.js"
+	}
+}
