@@ -11,6 +11,10 @@
 	"bugs":        "https://github.com/derhuerst/node-spotlight/issues",
 	"license":     "ISC",
 	"engines":     {"node": ">=6"},
+	"dependencies": {
+		"binary-split": "^1.0.3",
+		"through2-map": "^3.0.0"
+	},
 	"devDependencies": {
 		"is-stream": "^1.1.0"
 	},
