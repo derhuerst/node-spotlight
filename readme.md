@@ -18,7 +18,40 @@ npm install node-spotlight
 
 ## Usage
 
-todo
+```js
+spotlight(query, directory, attributes)
+```
+
+```js
+const spotlight = require('node-spotlight')
+
+spotlight('bvg-wlan', null, [
+	'kMDItemAuthors',
+	'kMDItemContentType',
+	'kMDItemFSInvisible',
+	'kMDItemKind',
+	'kMDItemNumberOfPages',
+	'kMDItemTitle',
+	'kMDItemUseCount',
+	'kMDItemVersion',
+])
+.on('data', (d) => console.log('result', d))
+.on('error', (e) => console.log('error', e))
+```
+
+```js
+{
+	path: '/Users/j/Downloads/bvg/bvg-wlan.pdf',
+	kMDItemAuthors: ['BVG VBA-FGI Kartographie'],
+	kMDItemContentType: 'com.adobe.pdf',
+	kMDItemFSInvisible: false,
+	kMDItemKind: 'Portable Document Format (PDF)',
+	kMDItemNumberOfPages: 1,
+	kMDItemTitle: 'S+U-Bahn_2901_2016_18-10_WLAN',
+	kMDItemUseCount: 15,
+	kMDItemVersion: '1.6'
+}
+```
 
 
 ## Contributing
