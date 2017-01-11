@@ -22,6 +22,6 @@
 	},
 	"scripts": {
 		"prepublish": "npm test",
-		"test": "node test.js"
+		"test": "node test/index.js"
 	}
 }

@@ -6,7 +6,7 @@ const timeout = require('p-timeout')
 const isStream = require('is-stream')
 const sink = require('stream-sink')
 
-const spotlight = require('.')
+const spotlight = require('..')
 
 const showError = (err) => {
 	console.error(err)
@@ -40,8 +40,6 @@ const attributes = {
 }
 
 
-
-console.info('platform:', process.platform)
 
 assert(isStream(spotlight('foo', __dirname)))
 
