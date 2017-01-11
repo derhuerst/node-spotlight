@@ -17,7 +17,7 @@ assert(isStream(spotlight('foo', __dirname)))
 
 spotlight('sleep', '/bin')
 .on('error', (err) => {
-	assert.strictEqual(err.message.slice(-10), 'not supported')
+	assert.strictEqual(err.message, process.platform + ' is not supported')
 })
 .pipe(sink('object'))
 .then((results) => {
