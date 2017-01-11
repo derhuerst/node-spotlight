@@ -3,7 +3,7 @@
 	"description": "Search macOS using Spotlight.",
 	"version":     "0.1.0",
 	"main":        "index.js",
-	"files":       ["index.js"],
+	"files":       ["index.js", "lib/*.js"],
 	"keywords":    ["macos", "os x", "spotlight", "search", "mdfind"],
 	"author":      "Jannis R <mail@jannisr.de>",
 	"homepage":    "https://github.com/derhuerst/node-spotlight",

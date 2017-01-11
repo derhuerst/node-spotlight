@@ -4,6 +4,8 @@ const child = require('child_process')
 const split = require('binary-split')
 const map = require('through2-map')
 
+const attributes = require('./lib/attributes')
+
 
 
 const spotlight = (query, dir = null, attrs = []) => {
@@ -14,10 +16,7 @@ const spotlight = (query, dir = null, attrs = []) => {
 
 	const args = [query, '-0']
 	if (dir) args.push('-onlyin', dir)
-	for (let attr of attrs) {
-		args.push('-attr', attr)
-		parsers[attr] = new RegExp('^' + attr + ' = ')
-	}
+	for (let attr of attrs) args.push('-attr', attr)
 
 	const search = child.spawn('mdfind', args, {
 		stdio: ['ignore', 'pipe', 'ignore']
@@ -31,9 +30,19 @@ const spotlight = (query, dir = null, attrs = []) => {
 
 		for (let i = 0; i < attrs.length; i++) {
 			const attr = attrs[i]
-			result[attr] = data[i + 1].replace(parsers[attr], '')
-		}
+			let value = data[i + 1]
 
+			// strip attr prefix from value
+			const begin = attr + ' = '
+			if (value.slice(0, begin.length) === begin)
+				value = value.slice(begin.length)
+
+			// parse value
+			if (value === '(null)') value = null
+			else if (attributes[attr]) value = attributes[attr](value)
+
+			result[attr] = value
+		}
 		return result
 	}))
 
