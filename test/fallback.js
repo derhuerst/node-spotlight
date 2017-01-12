@@ -3,7 +3,6 @@
 
 const assert = require('assert')
 const isStream = require('is-stream')
-const sink = require('stream-sink')
 
 const spotlight = require('..')
 
@@ -19,8 +18,3 @@ spotlight('sleep', '/bin')
 .on('error', (err) => {
 	assert.strictEqual(err.message.slice(-16), ' not implemented')
 })
-.pipe(sink('object'))
-.then((results) => {
-	assert.strictEqual(results.length, 0)
-})
-.catch(showError)
