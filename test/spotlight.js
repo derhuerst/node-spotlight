@@ -6,7 +6,7 @@ const timeout = require('p-timeout')
 const isStream = require('is-stream')
 const sink = require('stream-sink')
 
-const spotlight = require('..')
+const spotlight = require('../lib/spotlight')
 
 const showError = (err) => {
 	console.error(err)
@@ -57,6 +57,7 @@ timeout(
 
 	const sleep = results.find((result) => result.path === '/bin/sleep')
 	assert(sleep)
+	console.info('✓ /bin/sleep')
 })
 .catch(showError)
 
@@ -72,5 +73,6 @@ timeout(
 			assert(validator(result[attr]), `${attr} of ${result.path} invalid`)
 		}
 	}
+	console.info('✓ /bin/sleep with specific attributes')
 })
 .catch(showError)
