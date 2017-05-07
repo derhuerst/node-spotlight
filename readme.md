@@ -7,6 +7,7 @@
 [![dependency status](https://img.shields.io/david/derhuerst/node-spotlight.svg)](https://david-dm.org/derhuerst/node-spotlight)
 [![dev dependency status](https://img.shields.io/david/dev/derhuerst/node-spotlight.svg)](https://david-dm.org/derhuerst/node-spotlight#info=devDependencies)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/node-spotlight.svg)
+[![chat on gitter](https://badges.gitter.im/derhuerst.svg)](https://gitter.im/derhuerst)
 
 
 ## Installing
