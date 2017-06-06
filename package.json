@@ -1,7 +1,7 @@
 {
 	"name":        "node-spotlight",
 	"description": "Search macOS using Spotlight.",
-	"version":     "0.1.1",
+	"version":     "0.1.2",
 	"main":        "index.js",
 	"files":       ["index.js", "lib/*.js"],
 	"keywords":    ["macos", "os x", "spotlight", "search", "mdfind"],
@@ -13,7 +13,6 @@
 	"engines":     {"node": ">=6"},
 	"dependencies": {
 		"binary-split": "^1.0.3",
-		"shell-escape": "^0.2.0",
 		"through2-map": "^3.0.0"
 	},
 	"devDependencies": {
