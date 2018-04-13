@@ -53,7 +53,21 @@ spotlight('bvg-wlan', null, [
 	kMDItemUseCount: 15,
 	kMDItemVersion: '1.6'
 }
+// …
 ```
+
+
+## API
+
+```js
+spotlight(query, dir = null, filters = [])
+```
+
+- `query` must be a string.
+- `dir` is an optional string.
+- `filters` is an optional array if attributes that should be filtered by.
+
+Returns a [readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) in [object mode](https://nodejs.org/api/stream.html#stream_object_mode).
 
 
 ## Contributing
