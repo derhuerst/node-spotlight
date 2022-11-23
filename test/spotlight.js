@@ -1,18 +1,10 @@
-#!/usr/bin/env node
 'use strict'
 
-const assert = require('assert')
-const timeout = require('p-timeout')
+const tap = require('tap')
 const isStream = require('is-stream')
 const sink = require('stream-sink')
 
 const spotlight = require('../lib/spotlight')
-
-const showError = (err) => {
-	console.error(err)
-	process.exit(1)
-	throw err
-}
 
 const isString = (s) => 'string' === typeof s
 const isNumber = (s) => 'number' === typeof s
@@ -37,46 +29,36 @@ const attributes = {
 	kMDItemPhysicalSize: isNumber
 }
 
+tap.test('finds Safari.app in /Applications', async (t) => {
+	const s = spotlight('safari', '/Applications')
+	t.ok(isStream(s), 'should be a stream')
+	s.on('error', t.ifError)
+	const results = await s.pipe(sink('object'))
 
-
-assert(isStream(spotlight('foo', __dirname)))
-
-timeout(
-	spotlight('safari', '/Applications')
-	.on('error', assert.ifError)
-	.pipe(sink('object'))
-, 3000)
-.then((results) => {
-	assert(results.length > 0)
 	for (let result of results) {
-		assert.deepStrictEqual(Object.keys(result), ['path'])
-		assert.strictEqual(typeof result.path, 'string')
+		t.same(Object.keys(result), ['path'])
+		t.equal(typeof result.path, 'string')
 	}
 
 	const safari = results.find((result) => result.path === '/Applications/Safari.app')
-	assert(safari)
-	console.info('✓ /Applications/Safari.app')
+	t.ok(safari, 'should find /Applications/Safari.app')
 })
-.catch(showError)
 
-timeout(
-	spotlight('safari', '/Applications', Object.keys(attributes))
-	.on('error', assert.ifError)
-	.pipe(sink('object'))
-, 3000)
-.then((results) => {
+tap.test('finds Safari.app in /Applications, with attributes', async (t) => {
+	const s = spotlight('safari', '/Applications', Object.keys(attributes))
+	t.ok(isStream(s), 'should be a stream')
+	s.on('error', t.ifError)
+	const results = await s.pipe(sink('object'))
+
 	for (let result of results) {
 		for (let attr in attributes) {
 			const validator = attributes[attr]
-			assert(validator(result[attr]), `${attr} of ${result.path} invalid`)
+			t.ok(validator(result[attr]), `${attr} of ${result.path} invalid`)
 		}
 	}
 
 	const safari = results.find((result) => result.path === '/Applications/Safari.app')
-	assert(safari)
-	assert.strictEqual(safari.kMDItemContentType, 'com.apple.application-bundle')
-	assert.strictEqual(safari.kMDItemKind, 'Application')
-
-	console.info('✓ /Applications/Safari.app with specific attributes')
+	t.ok(safari, 'should find /Applications/Safari.app')
+	t.equal(safari.kMDItemContentType, 'com.apple.application-bundle')
+	t.equal(safari.kMDItemKind, 'Application')
 })
-.catch(showError)

@@ -1,17 +1,17 @@
-#!/usr/bin/env node
 'use strict'
 
-const assert = require('assert')
+const tap = require('tap')
 const isStream = require('is-stream')
 
 const fallback = require('../lib/fallback')
 
+tap.test('fallback works', async (t) => {
+	const s = fallback('sleep', '/bin')
+	t.ok(isStream(s), 'must be a stream')
 
-
-const s = fallback('sleep', '/bin')
-
-assert(isStream(s))
-
-s.on('error', (err) => {
-	assert.strictEqual(err.message.slice(-16), ' not implemented')
+	const err = await new Promise((resolve) => {
+		s.on('data', () => {}) // start consuming the stream
+		s.once('error', resolve)
+	})
+	t.ok(err.message.includes('not implemented'), 'error message should say "not implemented"')
 })
