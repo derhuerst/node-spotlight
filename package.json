@@ -10,13 +10,15 @@
 	"repository":  "derhuerst/node-spotlight",
 	"bugs":        "https://github.com/derhuerst/node-spotlight/issues",
 	"license":     "ISC",
-	"engines":     {"node": ">=6"},
+	"engines": {
+		"node": ">=18"
+	},
 	"dependencies": {
 		"binary-split": "^1.0.3",
 		"through2-map": "^3.0.0"
 	},
 	"devDependencies": {
-		"eslint": "^7.32.0",
+		"eslint": "^8.28.0",
 		"is-stream": "^1.1.0",
 		"p-timeout": "^1.0.0",
 		"stream-sink": "^2.0.0"
