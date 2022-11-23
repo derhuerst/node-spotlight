@@ -21,7 +21,7 @@
 		"stream-sink": "^2.0.0"
 	},
 	"scripts": {
-		"prepublish": "npm test",
+		"prepublishOnly": "npm test",
 		"test": "node test/index.js"
 	}
 }
