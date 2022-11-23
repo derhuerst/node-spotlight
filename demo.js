@@ -2,19 +2,21 @@
 
 const spotlight = require('.')
 
-spotlight('example', null, [
-	'kMDItemAuthors',
-	'kMDItemContentType',
-	'kMDItemFSInvisible',
-	'kMDItemKind',
-	'kMDItemNumberOfPages',
-	'kMDItemTitle',
-	'kMDItemUseCount',
-	'kMDItemVersion',
-])
-.on('data', (d) => console.log('result', d))
-.on('end', () => console.log('done!'))
-.once('error', (err) => {
+;(async () => {
+	const search = spotlight('example', null, [
+		'kMDItemAuthors',
+		'kMDItemContentType',
+		'kMDItemFSInvisible',
+		'kMDItemKind',
+		'kMDItemNumberOfPages',
+		'kMDItemTitle',
+		'kMDItemUseCount',
+		'kMDItemVersion',
+	])
+	for await (const result of search) console.log(result)
+	console.log('done!')
+})()
+.catch((err) => {
 	console.error(err)
 	process.exit(1)
 })

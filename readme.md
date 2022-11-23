@@ -25,7 +25,7 @@ spotlight(query, directory, attributes)
 ```js
 const spotlight = require('node-spotlight')
 
-spotlight('bvg-wlan', null, [
+const results = spotlight('bvg-wlan', null, [
 	'kMDItemAuthors',
 	'kMDItemContentType',
 	'kMDItemFSInvisible',
@@ -35,12 +35,9 @@ spotlight('bvg-wlan', null, [
 	'kMDItemUseCount',
 	'kMDItemVersion',
 ])
-.on('data', (d) => console.log('result', d))
-.on('end', () => console.log('done!'))
-.once('error', (err) => {
-	console.error(err)
-	process.exit(1)
-})
+for await (const result of results) {
+	console.log('result', result)
+}
 ```
 
 ```js
@@ -69,7 +66,7 @@ spotlight(query, dir = null, filters = [])
 - `dir` is an optional string.
 - `filters` is an optional array if attributes that should be filtered by.
 
-Returns a [readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) in [object mode](https://nodejs.org/api/stream.html#stream_object_mode).
+Returns an [async iterator/iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols) of search results.
 
 
 ## Contributing

@@ -14,13 +14,10 @@
 		"node": ">=18"
 	},
 	"dependencies": {
-		"binary-split": "^1.0.3",
-		"through2-map": "^3.0.0"
+		"bsplit2": "github:derhuerst/bsplit2#1.1.0"
 	},
 	"devDependencies": {
 		"eslint": "^8.28.0",
-		"is-stream": "^1.1.0",
-		"stream-sink": "^2.0.0",
 		"tap": "^16.3.2"
 	},
 	"scripts": {
