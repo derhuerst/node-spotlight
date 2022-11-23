@@ -7,7 +7,6 @@ const isStream = require('is-stream')
 const sink = require('stream-sink')
 
 const spotlight = require('../lib/spotlight')
-const { deepStrictEqual } = require('assert')
 
 const showError = (err) => {
 	console.error(err)
@@ -20,7 +19,6 @@ const isNumber = (s) => 'number' === typeof s
 const isBoolean = (s) => 'boolean' === typeof s
 const isDate = (d) =>
 	d && d.toISOString && d.valueOf() === new Date(d.toISOString()).valueOf()
-const isArrayOf = (t) => (a) => Array.isArray(a) && a.every(t)
 
 // We assume these attributes exist for every search result.
 const attributes = {

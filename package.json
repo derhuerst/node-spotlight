@@ -16,12 +16,14 @@
 		"through2-map": "^3.0.0"
 	},
 	"devDependencies": {
+		"eslint": "^7.32.0",
 		"is-stream": "^1.1.0",
 		"p-timeout": "^1.0.0",
 		"stream-sink": "^2.0.0"
 	},
 	"scripts": {
-		"prepublishOnly": "npm test",
+		"prepublishOnly": "npm run lint && npm test",
+		"lint": "eslint .",
 		"test": "node test/index.js"
 	}
 }
